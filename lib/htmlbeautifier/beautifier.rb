@@ -6,18 +6,19 @@ module HtmlBeautifier
     attr_accessor :tab_stops
 
     # Create a new Beautifier.
-    # output should be an object that responds to <<
-    # i.e. a String or an IO
-    def initialize(output)
+    #
+    def initialize
       self.tab_stops = 2
-      @output = output
     end
 
-    # Process an HTML/HTML+ERB document
+    # Beautify an HTML/HTML+ERB document
     # html should be a string
-    def scan(html)
-      @parser = HtmlParser.new
-      @parser.scan html.strip, Builder.new(@output, self.tab_stops)
+    # Returns a string
+    #
+    def beautify(html)
+      ''.tap { |output|
+        HtmlParser.new.scan html.strip, Builder.new(output, tab_stops)
+      }
     end
   end
 end

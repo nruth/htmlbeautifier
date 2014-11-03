@@ -3,8 +3,7 @@ require 'htmlbeautifier'
 require 'fileutils'
 
 def beautify(name, input, output)
-  HtmlBeautifier::Beautifier.new(output).scan(input)
-  output << "\n"
+  output.puts HtmlBeautifier::Beautifier.new.beautify(input)
 rescue => e
   raise "Error parsing #{name}: #{e}"
 end

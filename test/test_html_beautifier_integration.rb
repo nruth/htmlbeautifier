@@ -110,7 +110,7 @@ class TestHtmlBeautifierIntegration < Test::Unit::TestCase
 
   def test_should_raise_an_error_with_the_source_line_of_an_illegal_outdent
     begin
-      HtmlBeautifier::Beautifier.new('').scan("<html>\n</html>\n</html>")
+      HtmlBeautifier::Beautifier.new.beautify("<html>\n</html>\n</html>")
     rescue Exception => e
       @exception = e
     end
